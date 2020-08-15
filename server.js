@@ -19,7 +19,10 @@ const {
 } = process.env;
 
 const getSubscriptionUrl = require('./server/getSubscriptionUrl');
+const createScriptTag = require('./server/createScriptTag');
 
+const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
+const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 // adding the app 
 
 app.prepare().then(() => {
@@ -33,7 +36,19 @@ app.prepare().then(() => {
         createShopifyAuth({
           apiKey: SHOPIFY_API_KEY,
           secret: SHOPIFY_API_SECRET_KEY,
-          scopes: ['read_products'],
+          // I am not sure if these are the right ones O.o
+          scopes: [
+            'read_products', 
+            'write_products', 
+            'write_script_tags', 
+            'read_script_tags', 
+            'read_themes', 
+            'write_themes', 
+            'read_product_listings', 
+            'write_product_listings' 
+          ],
+
+
           async afterAuth(ctx) {
             const { shop, accessToken } = ctx.session;
             // Because this app is loaded in an iframe it's important to set your cookies to use sameSite and secure for the app to load in Google Chrome.
@@ -45,10 +60,11 @@ app.prepare().then(() => {
             
             
             await getSubscriptionUrl(ctx, accessToken, shop)
+            await createScriptTag(accessToken, shop)
           },
         }),
       );
-    
+      server.use(graphQLProxy({version: ApiVersion.January20}));
       server.use(verifyRequest());
 
     server.use(async (ctx) => {

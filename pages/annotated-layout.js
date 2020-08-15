@@ -17,7 +17,13 @@ class AnnotatedLayout extends React.Component {
         maxValue: '',
         enabled: false,
     }; 
-
+    // componentDidMount() {
+    //   const script = document.createElement("script");
+    //   script.src = "../jsCounterScript.js";
+    //   script.async = true;
+    //   document.body.appendChild(script);
+    //   console.log('componentDidmount', script)
+    // }
 
     render() {
         const { minValue, maxValue, enabled } = this.state;
@@ -63,7 +69,11 @@ class AnnotatedLayout extends React.Component {
                 <Layout.AnnotatedSection
                            title="Example:"
                            description="This product is being watched by "
-                       >
+                            
+                       >  
+                       <Card>
+                         
+                       </Card>
                        </Layout.AnnotatedSection>
                 <Layout.AnnotatedSection
                     title="Turn On/Off BusyStore App"

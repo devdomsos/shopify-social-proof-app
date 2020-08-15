@@ -13,13 +13,24 @@ import translations from '@shopify/polaris/locales/en.json';
 import { Provider } from '@shopify/app-bridge-react';
 // Add your Shopify API key and the shopOrigin using js-cookie, and the forceRedirect prop to the AppProvider component
 import Cookies from 'js-cookie';
+import { ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+
+
+
+const client = new ApolloClient({
+  fetchOptions: {
+    credentials: 'include'
+  },
+});
+
 
 class MyApp extends App {
   render() {
 
     // deconstruct props. console.log(this.props)
     const { Component, pageProps } = this.props;
-    console.log(pageProps)
+  
     const configForAppBridge = { apiKey: API_KEY, shopOrigin: Cookies.get("shopOrigin"), forceRedirect: true };
     return (
       <React.Fragment>
@@ -30,7 +41,9 @@ class MyApp extends App {
         {/* Wrapping the Component with the <AppProvider> component. Passing down the translations from Polaris. */}
         <Provider config={configForAppBridge}>
             <AppProvider i18n={translations} >
-                <Component {...pageProps} />
+              <ApolloProvider client={client}>
+                  <Component {...pageProps} />
+              </ApolloProvider>
             </AppProvider>
         </Provider>
       </React.Fragment>

@@ -1,7 +1,4 @@
 <div style="text-align: left; padding-left:5%; color:#000000; margin-bottom: 15px;">
-{% comment %}
-  ** My custom sinppet for dynamic viewers count **
-{% endcomment %}
 <script>
     function startTime() {
      var today = new Date();
@@ -22,7 +19,7 @@
                     s = checkTime(s);
      document.getElementById('txt').innerHTML =
                 "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>" + Math.round(count) + "</strong> ogląda ten produkt";
-             var t = setTimeout(startTime, 5000);
+             var t = setTimeout(startTime, 500);
         }
     function checkTime(i) {
          if (i < 10) {i = i};
