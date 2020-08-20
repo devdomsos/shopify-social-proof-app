@@ -1,3 +1,4 @@
+
 const createScriptTag = async (accessToken, shop) => {
     const query = JSON.stringify({
       query: `mutation scriptTagCreate($input: ScriptTagInput!) {

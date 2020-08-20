@@ -1,3 +1,21 @@
+1. What is Social Proof for Ecommerce?
+
+    Social Proof is when people assume that your product is great based on the actions of other people. People value the opinions of others, and you can leverage this to build trust and store credibility. By doing this you can capitalize on the current traffic beter and increase conversions (so they say) :) 
+
+2. The idea behind this BusyStore App. 
+
+    The idea was to build a Shopify integrated app with Visitor and Product Viewer Counter and allow people who sell on Shopify (Merchants) to show such counter on their product pages. The counter whould show fake viewer count. 
+
+    The following app is still work in progress. The components necessary to call it 'ready' are not there yet as the task proven to be more complicated for my current skillset. 
+
+    Idea for MVP: 
+        m) Integrates with Shopify and charges Merchants for installation - Done
+        v) Shows a Merchant Dashboard where they can switch between glogal settings and product selector. - Done
+        p) Display JavaScript Counter when user switches between states in React Component and remove the JS script from the store if the Merchant uninstalls the app - couldn't get that done. 
+        
+
+---------------------------------------------------------------
+
 How to run the app:
 
 1. Expose your dev environment
